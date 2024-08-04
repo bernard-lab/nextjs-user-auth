@@ -17,8 +17,6 @@ export async function POST(request: NextRequest) {
         if (!user) {
             return NextResponse.json({ error: 'User not found' }, { status: 400 });
         }
-        console.log("user already exist");
-
     
         // Compare password
         const isMatch = await bcryptjs.compare(password, user.password); //bcrypt will handle password matches
@@ -26,6 +24,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'Invalid password' }, { status: 401 });
         }
         console.log(user);
+
         // Create token data
         const tokenData = {
             id: user._id,

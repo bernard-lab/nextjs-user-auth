@@ -5,8 +5,8 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
-  const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail';
-
+  const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail' || path === '/changepassword' || path === '/forgotpassword';
+  
   const token = request.cookies.get('token')?.value || '';
 
   // if logged in, redirect to home page  or any other public page if you want  to restrict access to specific paths  like '/profile'
@@ -29,5 +29,7 @@ export const config = {
     '/login',
     '/signup',
     '/verifyemail',
+    '/forgotpassword',
+    '/changepassword',
   ],
 }

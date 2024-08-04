@@ -42,16 +42,17 @@ export const sendEmail = async ({ email, emailType, userId }: SendEmailParams) =
             },
         });
 
+        const path = emailType  === 'VERIFY' ? 'verifyemail' : 'changepassword';
         const mailOptions = {
             from: process.env.EMAIL_FROM || 'user@gmail.com',
             to: email,
-            subject: emailType === 'VERIFY' ? 'Verify Your Email' : 'Reset Your Password',
+            subject: emailType === 'VERIFY' ? 'Verify Your Email' : 'RESET' ? 'Reset Password' : '',
             html: `
                 <p>
                 Click 
-                <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here </a> 
+                <a href="${process.env.DOMAIN}/${path}?token=${hashedToken}">here </a> 
                 to ${emailType === 'VERIFY' ? 'Verify Your Email' : 'Reset Your Password'}
-                or copy and paste the link below in your browser. <br> ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
+                or copy and paste the link below in your browser. <br> ${process.env.DOMAIN}/${path}?token=${hashedToken}
                 </p>`,
         };
 

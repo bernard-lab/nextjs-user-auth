@@ -37,7 +37,7 @@ export async function POST(request: NextRequest){
             });
 
     } catch (error: any) {
-        return NextResponse.json({error: `Error in verifyemail/route.ts file ${error.message}` }, {status: 500});
+        return NextResponse.json({error: `Error: ${error.message}` }, {status: 500});
     }
 }
 
